@@ -13,12 +13,12 @@
 # Date: 2013-07-29T17:23:27-07:00
 #
 
-((jQuery, window, undefined_) ->
+(($, window, undefined_) ->
   "use strict"
   matched = undefined
   browser = undefined
 
-  jQuery.uaMatch = (ua) ->
+  $.uaMatch = (ua) ->
     ua = ua.toLowerCase()
     match = /(opr)[\/]([\w.]+)/.exec(ua) or /(chrome)[ \/]([\w.]+)/.exec(ua) or /(version)[ \/]([\w.]+).*(safari)[ \/]([\w.]+)/.exec(ua) or /(webkit)[ \/]([\w.]+)/.exec(ua) or /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) or /(msie) ([\w.]+)/.exec(ua) or ua.indexOf("trident") >= 0 and /(rv)(?::| )([\w.]+)/.exec(ua) or ua.indexOf("compatible") < 0 and /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) or []
     platform_match = /(ipad)/.exec(ua) or /(iphone)/.exec(ua) or /(android)/.exec(ua) or /(windows phone)/.exec(ua) or /(win)/.exec(ua) or /(mac)/.exec(ua) or /(linux)/.exec(ua) or /(cros)/i.exec(ua) or []
@@ -26,7 +26,7 @@
     version: match[2] or "0"
     platform: platform_match[0] or ""
 
-  matched = jQuery.uaMatch(window.navigator.userAgent)
+  matched = $.uaMatch(window.navigator.userAgent)
   browser = {}
 
   if matched.browser
@@ -74,5 +74,5 @@
   browser.name = matched.browser
   browser.platform = matched.platform
 
-jQuery.browser = browser
-) jQuery, window
+  $.browser = browser
+) window, window
